@@ -17,7 +17,7 @@ module.exports = {
         console.log("user",data.message)
         if (data.message === "Hi") {
             data.message = "Hello";
-            console.log("user message",data.message);
+            console.log("user message",data);
             //Sends back 'Hello' to user.
             return sdk.sendUserMessage(data, callback);
         } else if(!data.agent_transfer){
@@ -34,7 +34,7 @@ module.exports = {
             console.log("bot message",data)
         }
         //Sends back the message to user
-        console.log("bot message",data.message)
+        console.log("bot message",data)
         return sdk.sendUserMessage(data, callback);
     },
     on_agent_transfer : function(requestId, data, callback){
