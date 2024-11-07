@@ -41,7 +41,7 @@ module.exports = {
         return callback(null, data);
     },
     on_event : function (requestId, data, callback) {
-        console.log("on_event -->  Event : ", data.event);
+        console.log("on_event -->  Event : ", data);
         return callback(null, data);
     },
     on_alert : function (requestId, data, callback) {
