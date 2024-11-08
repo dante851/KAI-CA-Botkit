@@ -39,7 +39,7 @@ module.exports = {
        if (data.context.session.BotContext.customMetaTags.length !== 0) {
         let excelDataWithoutFormat = data.context.session.BotContext.customMetaTags;
         const header = Object.keys(excelDataWithoutFormat[0]);
-        const rows = data.map(obj => Object.values(obj));
+        const rows = excelDataWithoutFormat.map(obj => Object.values(obj));
         const excelData = [header, ...rows];
         // Build the Excel file
         const buffer = xlsx.build([{ name: 'Sheet1', data: excelData }]);
