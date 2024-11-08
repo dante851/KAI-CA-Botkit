@@ -1,6 +1,8 @@
 var botId = "st-5ce0721c-5c5e-56b0-a0ba-cac19303c9a5";
 var botName = "OrderManage";
 var sdk = require("./lib/sdk");
+const xlsx = require('node-xlsx').default;
+const fs = require('fs');
 
 /*
  * This is the most basic example of BotKit.
@@ -34,11 +36,17 @@ module.exports = {
             console.log("bot message",data.message)
         }
         //Sends back the message to user
-        if(data.context.session.BotContext.customMetaTags.length !== 0){
-            console.log("excel")
-            const workbook = createAndFillWorkbook();
-            workbook.xlsx.writeFile("CA_BOT_KPI.xlsx");
-        }
+       if (data.context.session.BotContext.customMetaTags.length !== 0) {
+        let excelDataWithoutFormat = data.context.session.BotContext.customMetaTags;
+        const header = Object.keys(excelDataWithoutFormat[0]);
+        const rows = data.map(obj => Object.values(obj));
+        const excelData = [header, ...rows];
+        // Build the Excel file
+        const buffer = xlsx.build([{ name: 'Sheet1', data: excelData }]);
+         
+        // Write the file to the filesystem
+        fs.writeFileSync('CA_BOT_KPI.xlsx', buffer);
+    }
         console.log("bot message",data.message)
         return sdk.sendUserMessage(data, callback);
     },
