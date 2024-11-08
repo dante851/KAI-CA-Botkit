@@ -19,7 +19,7 @@ module.exports = {
         console.log("user",data.message)
         if (data.message === "Hi") {
             data.message = "Hello";
-            console.log("user message",JSON.stringify(data));
+            console.log("user message",data.message);
             //Sends back 'Hello' to user.
             return sdk.sendUserMessage(data, callback);
         } else if(!data.agent_transfer){
@@ -54,7 +54,7 @@ module.exports = {
         return callback(null, data);
     },
     on_event : function (requestId, data, callback) {
-        console.log("on_event -->  Event : ", JSON.stringify(data));
+        console.log("on_event -->  Event : ", data.message);
         return callback(null, data);
     },
     on_alert : function (requestId, data, callback) {
