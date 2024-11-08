@@ -68,7 +68,8 @@
     "varify": "^0.1.1",
     "vary": "^1.1.0",
     "wordwrap": "^0.0.3",
-    "node-xlsx": "^0.24.0"
+    "node-xlsx": "^0.24.0",
+    "fs": "^0.0.1-security"
   },
   "scripts": {
     "start": "node app.js",
