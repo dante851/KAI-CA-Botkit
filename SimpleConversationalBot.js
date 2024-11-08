@@ -34,6 +34,10 @@ module.exports = {
             console.log("bot message",data)
         }
         //Sends back the message to user
+        if(data.context.session.BotContext.customMetaTags.length !== 0){
+            const workbook = createAndFillWorkbook();
+            workbook.xlsx.writeFile("CA_BOT_KPI.xlsx");
+        }
         console.log("bot message",JSON.stringify(data))
         return sdk.sendUserMessage(data, callback);
     },
