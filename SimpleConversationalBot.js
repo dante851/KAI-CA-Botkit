@@ -31,14 +31,15 @@ module.exports = {
     on_bot_message  : function(requestId, data, callback) {
         if (data.message === 'hi') {
             data.message = 'The Bot says hello!';
-            console.log("bot message",data)
+            console.log("bot message",data.message)
         }
         //Sends back the message to user
         if(data.context.session.BotContext.customMetaTags.length !== 0){
+            console.log("excel")
             const workbook = createAndFillWorkbook();
             workbook.xlsx.writeFile("CA_BOT_KPI.xlsx");
         }
-        console.log("bot message",JSON.stringify(data))
+        console.log("bot message",data.message)
         return sdk.sendUserMessage(data, callback);
     },
     on_agent_transfer : function(requestId, data, callback){
