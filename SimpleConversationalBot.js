@@ -37,10 +37,15 @@ module.exports = {
         }
         //Sends back the message to user
        if (data.context.session.BotContext.customMetaTags.length !== 0) {
+           console.log("excel")
         let excelDataWithoutFormat = data.context.session.BotContext.customMetaTags;
+           console.log("excelDataWithoutFormat",excelDataWithoutFormat);
         const header = Object.keys(excelDataWithoutFormat[0]);
+            console.log("header",header);
         const rows = excelDataWithoutFormat.map(obj => Object.values(obj));
+            console.log("rows",rows);
         const excelData = [header, ...rows];
+            console.log("excelData",excelData);
         // Build the Excel file
         const buffer = xlsx.build([{ name: 'Sheet1', data: excelData }]);
          
