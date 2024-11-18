@@ -36,22 +36,15 @@ module.exports = {
             console.log("bot message",data.message)
         }
         //Sends back the message to user
-       if (data.context.session.BotContext.customMetaTags.length !== 0) {
-           console.log("excel")
-        let excelDataWithoutFormat = data.context.session.BotContext.customMetaTags;
-           console.log("excelDataWithoutFormat",excelDataWithoutFormat);
-        const header = Object.keys(excelDataWithoutFormat[0]);
-            console.log("header",header);
-        const rows = excelDataWithoutFormat.map(obj => Object.values(obj));
-            console.log("rows",rows);
-        const excelData = [header, ...rows];
-            console.log("excelData",excelData);
-        // Build the Excel file
-        const buffer = xlsx.build([{ name: 'Sheet1', data: excelData }]);
-         
-        // Write the file to the filesystem
-        fs.writeFileSync('CA_BOT_KPI.xlsx', buffer);
-    }
+        if(data.message === 'You’ve entered an invalid Id.'){
+            if(context.entities.orderIdEntity && !context.entities.memberIdEntity){
+                context.entities.orderIdEntity = null;
+            } else if(context.entities.orderIdEntity && context.entities.memberIdEntity){
+                context.entities.memberIdEntity = null;
+                    }
+        }else if(data.message === 'You’ve reached the maximum number of attempts.'){
+            context.session.BotUserSession.noOfFailedAttempts = 0;
+        }
         console.log("bot message",data.message)
         return sdk.sendUserMessage(data, callback);
     },
