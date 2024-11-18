@@ -43,7 +43,7 @@ module.exports = {
                 console.log("data.context.entities.orderIdEntity",data.context.entities.orderIdEntity);
             } else if(data.context.entities.orderIdEntity && data.context.entities.memberIdEntity){
                 data.context.entities.memberIdEntity = null;
-                 console.log("data.context.entities.orderIdEntity",data.context.entities.orderIdEntity);
+                 console.log("data.context.entities.memberIdEntity",data.context.entities.memberIdEntity);
                     }
         }else if(data.context.session.BotUserSession.noOfFailedAttempts > 3){
             data.context.session.BotUserSession.noOfFailedAttempts = 0;
