@@ -36,12 +36,14 @@ module.exports = {
             console.log("bot message",data.message)
         }
         //Sends back the message to user
-        console.log("data",JSON.stringify(data));
         if(data.context.session.BotUserSession.isEntityValid === false){
+            console.log("data.context.session.BotUserSession.isEntityValid",data.context.session.BotUserSession.isEntityValid)
             if(data.context.entities.orderIdEntity && !data.context.entities.memberIdEntity){
                 data.context.entities.orderIdEntity = null;
+                console.log("data.context.entities.orderIdEntity",data.context.entities.orderIdEntity);
             } else if(data.context.entities.orderIdEntity && data.context.entities.memberIdEntity){
                 data.context.entities.memberIdEntity = null;
+                 console.log("data.context.entities.orderIdEntity",data.context.entities.orderIdEntity);
                     }
         }else if(data.context.session.BotUserSession.noOfFailedAttempts > 3){
             data.context.session.BotUserSession.noOfFailedAttempts = 0;
