@@ -36,6 +36,7 @@ module.exports = {
             console.log("bot message",data.message)
         }
         //Sends back the message to user
+        console.log("data",JSON.stringify(data));
         if(data.message === 'You’ve entered an invalid Id.'){
             if(data.context.entities.orderIdEntity && !data.context.entities.memberIdEntity){
                 data.context.entities.orderIdEntity = null;
