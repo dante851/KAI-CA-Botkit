@@ -40,10 +40,10 @@ module.exports = {
         if(data.context.session.BotUserSession.isEntityValid === false){
             console.log("data.context.session.BotUserSession.isEntityValid",data.context.session.BotUserSession.isEntityValid)
             if(data.context.entities.orderIdEntity && !data.context.entities.memberIdEntity){
-                data.context.entities.orderIdEntity = '';
+                delete data.context.entities.orderIdEntity;
                 console.log("data.context.entities.orderIdEntity",data.context.entities.orderIdEntity);
             } else if(data.context.entities.orderIdEntity && data.context.entities.memberIdEntity){
-                data.context.entities.memberIdEntity = '';
+                delete data.context.entities.memberIdEntity;
                  console.log("data.context.entities.memberIdEntity",data.context.entities.memberIdEntity);
                     }
         }else if(data.context.session.BotUserSession.noOfFailedAttempts > 3){
