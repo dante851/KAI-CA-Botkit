@@ -58,8 +58,8 @@ module.exports = {
     on_event : function (requestId, data, callback) {
         console.log("on_event -->  Event : ", JSON.stringify(data));
         if(data.event.completedTaskName === "welcome task"){
-context.session.BotUserSession.noOfconsecutiveFailedAttempts = 0;
-context.session.BotUserSession.errorValidation = false;
+data.context.session.BotUserSession.noOfconsecutiveFailedAttempts = 0;
+data.context.session.BotUserSession.errorValidation = false;
         }
         return callback(null, data);
     },
