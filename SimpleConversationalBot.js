@@ -59,8 +59,10 @@ module.exports = {
         console.log("on_event -->  Event : ", JSON.stringify(data));
         if(data.event.completedTaskName === "welcome task"){
              console.log("completedTaskName --> ");
-data.context.session.BotUserSession.noOfconsecutiveFailedAttempts = 0;
-data.context.session.BotUserSession.errorValidation = false;
+            BotUserSession.put("noOfconsecutiveFailedAttempts", 0);
+            BotUserSession.put("errorValidation", false);
+// data.context.session.BotUserSession.noOfconsecutiveFailedAttempts = 0;
+// data.context.session.BotUserSession.errorValidation = false;
         }else{
         console.log("else -->")
         }
