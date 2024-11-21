@@ -74,8 +74,8 @@ module.exports = {
   },
 };
 function msgTemplate(templateData) {
-  const templateType = templateData[0].MEDIA_TYPE;
-  const tableTemplate = templateData[0].DATA
+  const templateType = templateData[0]?.MEDIA_TYPE;
+  const tableTemplate = templateData[0]?.DATA
     ? [
         {
           type: "text",
@@ -83,7 +83,7 @@ function msgTemplate(templateData) {
             type: "template",
             payload: {
               template_type: "table",
-              ...JSON.parse(templateData[0].DATA),
+              ...JSON.parse(templateData[0]?.DATA),
             },
           },
           cInfo: {
@@ -93,7 +93,7 @@ function msgTemplate(templateData) {
       ]
     : null;
 
-  const dafaultTextTemplate = templateData[0].WEB_RESPONSE_MSG;
+  const dafaultTextTemplate = templateData[0]?.WEB_RESPONSE_MSG;
 
   switch (templateType) {
     case "TABLE":
