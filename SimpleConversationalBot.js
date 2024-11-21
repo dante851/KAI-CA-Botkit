@@ -4,6 +4,7 @@ var sdk = require("./lib/sdk");
 const xlsx = require('node-xlsx').default;
 const fs = require('fs');
 const {populateBotResponse} = require('./utility');
+const {msgTemplate} = require('./utility');
 /*
  * This is the most basic example of BotKit.
  *
