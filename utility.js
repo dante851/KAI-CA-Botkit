@@ -13,13 +13,13 @@ module.exports = {
     //hook to add custom events
     switch (responseId) {
       case "ESI_PHA_ORD_INFO_ASK_ORD_TITLE":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_CNFN_MSG":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_ASK_ORD_ID":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_ORD_ID_RESP":
         orderIdInput = entityStatus;
@@ -29,16 +29,15 @@ module.exports = {
           orderIdInput
         );
         result[0].WEB_RESPONSE_MSG = str;
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_ORD_FALLBACK":
-        return result[0].WEB_RESPONSE_MSG;
-
+        return msgTemplate(result);
       case "ESI_PHA_ORD_INFO_ASK_MEMBER_ID":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_CNFN_ERROR_MSG":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_MEMBER_ID_RESP":
         let memberIdInput = entityStatus;
@@ -47,7 +46,7 @@ module.exports = {
           memberIdInput
         );
         result[0].WEB_RESPONSE_MSG = memberStr;
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       case "ESI_PHA_ORD_INFO_INVALID_MSG":
         // let failedEntityInput = failedEntity === "OrderId" ? "Order Id" : "Member Id";
@@ -63,14 +62,44 @@ module.exports = {
                   failedEntity
                 );
           result[0].WEB_RESPONSE_MSG = failedEntityInputStr;
-          return result[0].WEB_RESPONSE_MSG;
+          return msgTemplate(result);
         }
 
       case "ESI_PHA_ORD_INFO_MAX_NO_ATTEMPTS_MSG":
-        return result[0].WEB_RESPONSE_MSG;
+        return msgTemplate(result);
 
       default:
         return responseId;
+    }
+  },
+  msgTemplate: function (templateData) {
+    const templateType = templateData[0].MEDIA_TYPE;
+    const tableTemplate = templateData[0].DATA
+      ? [
+          {
+            type: "text",
+            component: {
+              type: "template",
+              payload: {
+                template_type: "table",
+                ...JSON.parse(templateData[0].DATA),
+              },
+            },
+            cInfo: {
+              body: "Account details",
+            },
+          },
+        ]
+      : null;
+
+    const dafaultTextTemplate = templateData[0].WEB_RESPONSE_MSG;
+
+    switch (templateType) {
+      case "TABLE":
+        return tableTemplate;
+
+      default:
+        return dafaultTextTemplate;
     }
   },
 };
