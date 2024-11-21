@@ -1,4 +1,3 @@
-module.exports = {
 function populateBotResponse(responseId) {
     const verbiage_builder_resp = data.context.session.BotContext.vbResponse;
     let orderIdInput = "";
@@ -54,4 +53,7 @@ function populateBotResponse(responseId) {
         break;
     }
   }
+
+module.exports = {
+    populateBotResponse
 }
