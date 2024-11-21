@@ -51,7 +51,7 @@ module.exports = {
         return result[0].WEB_RESPONSE_MSG;
   
       default:
-        break;
+        return responseId;
     }
   }
 }
