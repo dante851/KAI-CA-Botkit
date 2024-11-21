@@ -1,5 +1,5 @@
 module.exports = {
-    populateBotResponse : function (vbResponse,responseId,entityStatus) {
+    populateBotResponse : function (vbResponse,responseId,entityStatus,failedEntity) {
     const verbiage_builder_resp = vbResponse;
     let orderIdInput = "";
     let result = verbiage_builder_resp.filter(
@@ -45,6 +45,15 @@ module.exports = {
         return result[0].WEB_RESPONSE_MSG;
   
       case "ESI_PHA_ORD_INFO_INVALID_MSG":
+        // let failedEntityInput = failedEntity === "OrderId" ? "Order Id" : "Member Id";
+        let failedEntityInputStr = failedEntity === "Order Id" ? result[0].WEB_RESPONSE_MSG.replaceAll(
+          "${dynamic_entity}",
+          failedEntity
+        ); : result[0].WEB_RESPONSE_MSG.replaceAll(
+          "${dynamic_entity}",
+          failedEntity
+        );
+        result[0].WEB_RESPONSE_MSG = failedEntityInputStr;
         return result[0].WEB_RESPONSE_MSG;
   
       case "ESI_PHA_ORD_INFO_MAX_NO_ATTEMPTS_MSG":
