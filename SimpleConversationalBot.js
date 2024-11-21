@@ -35,9 +35,9 @@ module.exports = {
             data.message = 'The Bot says hello!';
             console.log("bot message",data.message)
         }
-
+        console.log("verbiage_builder_resp",data.context.session.BotContext.vbResponse);
         //Sends back the message to user
-       data.message = populateBotResponse(data.message);
+       data.message = populateBotResponse(data.context.session.BotContext.vbResponse,data.message);
         console.log("bot message",data.message)
         return sdk.sendUserMessage(data, callback);
     },
@@ -45,16 +45,7 @@ module.exports = {
         return callback(null, data);
     },
     on_event : function (requestId, data, callback) {
-        console.log("on_event -->  Event : ", JSON.stringify(data));
-        if(data.event.completedTaskName === "welcome task"){
-             console.log("completedTaskName --> ");
-            data.context.session.BotUserSession.put("noOfconsecutiveFailedAttempts", 0);
-            data.context.session.BotUserSession.put("errorValidation", false);
-// data.context.session.BotUserSession.noOfconsecutiveFailedAttempts = 0;
-// data.context.session.BotUserSession.errorValidation = false;
-        }else{
-        console.log("else -->")
-        }
+        console.log("on_event -->  Event : ", data.message);
         return callback(null, data);
     },
     on_alert : function (requestId, data, callback) {
