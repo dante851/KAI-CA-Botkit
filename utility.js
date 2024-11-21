@@ -1,5 +1,5 @@
 module.exports = {
-    populateBotResponse : function (vbResponse,responseId) {
+    populateBotResponse : function (vbResponse,responseId,entityStatus) {
     const verbiage_builder_resp = vbResponse;
     let orderIdInput = "";
     let result = verbiage_builder_resp.filter(
@@ -17,7 +17,7 @@ module.exports = {
         return result[0].WEB_RESPONSE_MSG;
   
       case "ESI_PHA_ORD_INFO_ORD_ID_RESP":
-        orderIdInput = context.session.BotUserSession.entity_status;
+        orderIdInput = entityStatus;
   
         let str = result[0].WEB_RESPONSE_MSG.replaceAll(
           "${order_status}",
@@ -36,7 +36,7 @@ module.exports = {
         return result[0].WEB_RESPONSE_MSG;
   
       case "ESI_PHA_ORD_INFO_MEMBER_ID_RESP":
-        let memberIdInput = context.session.BotUserSession.entity_status;
+        let memberIdInput = entityStatus;
         let memberStr = result[0].WEB_RESPONSE_MSG.replaceAll(
           "${member_status}",
           memberIdInput
