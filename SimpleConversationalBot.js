@@ -3,7 +3,7 @@ var botName = "OrderManage";
 var sdk = require("./lib/sdk");
 const xlsx = require('node-xlsx').default;
 const fs = require('fs');
-const populateBotResponse = require('./utility');
+const {populateBotResponse} = require('./utility');
 /*
  * This is the most basic example of BotKit.
  *
