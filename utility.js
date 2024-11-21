@@ -1,6 +1,6 @@
 module.exports = {
-    populateBotResponse : function (data,responseId) {
-    const verbiage_builder_resp = data.context.session.BotContext.vbResponse;
+    populateBotResponse : function (vbResponse,responseId) {
+    const verbiage_builder_resp = vbResponse;
     let orderIdInput = "";
     let result = verbiage_builder_resp.filter(
       (ele) => ele.RESPONSE_ID === responseId
