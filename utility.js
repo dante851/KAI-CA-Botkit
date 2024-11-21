@@ -72,7 +72,8 @@ module.exports = {
         return responseId;
     }
   },
-  msgTemplate: function (templateData) {
+};
+ msgTemplate: function (templateData) {
     const templateType = templateData[0].MEDIA_TYPE;
     const tableTemplate = templateData[0].DATA
       ? [
@@ -101,5 +102,4 @@ module.exports = {
       default:
         return dafaultTextTemplate;
     }
-  },
-};
+  }
