@@ -49,10 +49,10 @@ module.exports = {
         let failedEntityInputStr = failedEntity === "Order Id" ? result[0].WEB_RESPONSE_MSG.replaceAll(
           "${dynamic_entity}",
           failedEntity
-        ); : result[0].WEB_RESPONSE_MSG.replaceAll(
+        ) : result[0].WEB_RESPONSE_MSG.replaceAll(
           "${dynamic_entity}",
           failedEntity
-        );
+        )
         result[0].WEB_RESPONSE_MSG = failedEntityInputStr;
         return result[0].WEB_RESPONSE_MSG;
   
