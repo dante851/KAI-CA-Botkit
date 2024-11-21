@@ -37,7 +37,7 @@ module.exports = {
         }
         console.log("verbiage_builder_resp",data.context.session.BotContext.vbResponse);
         //Sends back the message to user
-       data.message = populateBotResponse(data.context.session.BotContext.vbResponse,data.message);
+       data.message = populateBotResponse(data.context.session.BotContext.vbResponse,data.message,data.context.session.BotUserSession.entity_status);
         console.log("bot message",data.message)
         return sdk.sendUserMessage(data, callback);
     },
