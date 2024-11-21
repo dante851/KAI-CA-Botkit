@@ -1,5 +1,5 @@
 module.exports = {
-    populateBotResponse : function (responseId) {
+    populateBotResponse : function (data,responseId) {
     const verbiage_builder_resp = data.context.session.BotContext.vbResponse;
     let orderIdInput = "";
     let result = verbiage_builder_resp.filter(
