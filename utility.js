@@ -1,12 +1,12 @@
 module.exports = {
-  populateBotResponse: function (
-    vbResponse,
-    responseId,
-    entityStatus,
-    failedEntity
-  ) {
-    const verbiage_builder_resp = vbResponse;
+  populateBotResponse: function (data) {
+
+    const verbiage_builder_resp = data?.context?.session?.BotContext?.vbResponse;
+    const responseId = data?.message;
+    let entityStatus = data?.context?.session?.BotUserSession?.entity_status;
+    let failedEntity = data?.context?.session?.BotUserSession?.failedEntity;
     let orderIdInput = "";
+
     let result = verbiage_builder_resp.filter(
       (ele) => ele.RESPONSE_ID === responseId
     );
