@@ -36,7 +36,7 @@ module.exports = {
             data.message = 'The Bot says hello!';
             console.log("bot message",data.message)
         }
-        console.log("verbiage_builder_resp",data.context.session.BotContext.vbResponse);
+        console.log("verbiage_builder_resp",verbiage_En_RespData);
         //Sends back the message to user
        data.message = populateBotResponse(data.context.session.BotContext.vbResponse,data.message,data.context.session.BotUserSession.entity_status,
         data.context.session.BotUserSession.failedEntity);
@@ -56,5 +56,3 @@ module.exports = {
     }
 
 };
-
-
